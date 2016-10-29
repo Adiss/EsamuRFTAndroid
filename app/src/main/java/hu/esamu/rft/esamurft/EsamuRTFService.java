@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
@@ -59,6 +60,12 @@ public class EsamuRTFService extends Service {
         }
     }
 
+    @Override
+    public void onCreate(){
+        serverIp = ConfigHelper.getConfigValue(this, "server_ip");
+        serverPort = Integer.parseInt(ConfigHelper.getConfigValue(this, "server_port"));
+    }
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      * Starts the TCP connection with the server.
@@ -67,8 +74,6 @@ public class EsamuRTFService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         if(isNetworkAvailableAndConnected()) {
-            serverIp = ConfigHelper.getConfigValue(this, "server_ip");
-            serverPort = Integer.parseInt(ConfigHelper.getConfigValue(this, "server_port"));
             Log.e(TAG, "SERVERIP: " + serverIp + ", SERVERPORT: " + serverPort);
             new Thread(new TCPClientThread()).start();
             return START_STICKY;
