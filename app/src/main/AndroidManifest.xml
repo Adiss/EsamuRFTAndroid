@@ -76,10 +76,14 @@
                 android:value="hu.esamu.rft.esamurft.ItemListActivity" />
         </activity>
 
+        <activity
+                android:name=".ServiceTesterActivity"
+                android:label="@string/action_service_tester" />
         <service
-            android:name=".EsamuRTFService"
-            android:enabled="true"
-            android:exported="true"></service>
+                android:name=".EsamuRTFService"
+                android:enabled="true"
+                android:exported="true"/>
+
     </application>
 
 </manifest>

@@ -9,4 +9,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="hint_uzenet_a_szervernek">Üzenet a szervernek..</string>
+    <string name="button_kuldes">Küldés</string>
+    <string name="action_service_tester">NetworkServiceTester</string>
 </resources>

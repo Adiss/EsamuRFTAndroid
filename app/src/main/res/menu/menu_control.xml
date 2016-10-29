@@ -27,4 +27,9 @@
         android:orderInCategory="100"
         android:title="@string/action_recipes"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_service_tester"
+        android:orderInCategory="100"
+        android:title="@string/action_service_tester"
+        app:showAsAction="never" />
 </menu>

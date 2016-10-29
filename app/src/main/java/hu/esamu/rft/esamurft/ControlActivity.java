@@ -1,11 +1,13 @@
 package hu.esamu.rft.esamurft;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,11 +27,24 @@ public class ControlActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        /*
+        * Starting the network service
+        * */
+        Intent intent = new Intent(this, EsamuRTFService.class);
+        startService(intent);
+
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Intent intent = new Intent(this, EsamuRTFService.class);
+        stopService(intent);
     }
 
     @Override
@@ -62,6 +77,10 @@ public class ControlActivity extends AppCompatActivity {
                 break;
             case (R.id.action_recipes):
                 Log.d(this.getClass().getName(), "Recipes Options Menu");
+                break;
+            case (R.id.action_service_tester):
+                Log.d(this.getClass().getName(), "ServiceTester Options Menu");
+                this.startActivity(new Intent(this, ServiceTesterActivity.class));
                 break;
         }
 
